@@ -13,12 +13,6 @@ export default async function userUpdate(req: Request, res: Response) {
     try{
         const { password, firstName, lastName} = (req as authRequest).body;
 
-        if(!password && !firstName && !lastName){
-            return res.json({
-                message: "nothing passed to update!!"
-            });
-        }
-
         const updates: updatesInterface = {};
 
         if(password.length > 0){
