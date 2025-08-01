@@ -1,1 +1,1 @@
-{"root":["./src/db.ts","./src/index.ts","./src/controllers/authcontrollers/registration.ts","./src/routes/rootroute.ts"],"version":"5.9.2"}
+{"root":["./src/db.ts","./src/index.ts","./src/controllers/authcontrollers/login.ts","./src/controllers/authcontrollers/registration.ts","./src/routes/rootroute.ts"],"version":"5.9.2"}
