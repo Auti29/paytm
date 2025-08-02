@@ -5,10 +5,10 @@ import userUpdate from "../controllers/resourceControllers/user";
 import authMiddleware from "../middlewares/authMiddleware";
 import searchUsers from "../controllers/resourceControllers/bulkUsers";
 
-const router = Router();
+const userRouter = Router();
 
-router.post('/signup', registration);
-router.post('/signin', login);
-router.put('/user', authMiddleware as unknown as RequestHandler, userUpdate);
-router.get('/bulk', authMiddleware as RequestHandler, searchUsers);
-export default router;
+userRouter.post('/signup', registration);
+userRouter.post('/signin', login);
+userRouter.put('/user', authMiddleware as unknown as RequestHandler, userUpdate);
+userRouter.get('/bulk', authMiddleware as RequestHandler, searchUsers);
+export default userRouter;

@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from "mongoose";
+import mongoose, { model, Schema} from "mongoose";
 import bcrypt from "bcrypt";
 
 
@@ -61,3 +61,25 @@ UserSchema.pre("save", async function (next) {
 
 
 export const UserModel = model("users", UserSchema);
+
+
+export interface accountInterface {
+    userId: mongoose.Schema.Types.ObjectId, 
+    balance: Number
+}
+
+
+const AccountSchema = new Schema<accountInterface> ({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'UserModel', 
+        required: true
+    }, 
+    balance: {
+        type: Number,  
+        required: true
+    }
+}  );
+
+
+export const AccountModel = model("accounts", AccountSchema);

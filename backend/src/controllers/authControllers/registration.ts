@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import { UserModel } from "../../db";
+import { AccountModel, UserModel } from "../../db";
 
 
 export default async function registration (req: Request, res: Response) {
@@ -24,12 +24,19 @@ export default async function registration (req: Request, res: Response) {
 
 
     try{
-        await UserModel.create({
+        const userCreated = await UserModel.create({
             username, 
             password, 
             firstName, 
             lastName
         });
+
+        const userId = userCreated._id;
+
+        await AccountModel.create({
+            userId, 
+            balance: 1 + Math.random() * 10000
+        })
 
         return res.status(200).json({
             message:  "registration successful!!"

@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-import router  from "./routes/rootRoute";
+import userRouter  from "./routes/rootRoute";
+import accountRouter from "./routes/accountRoutes";
 import cors from "cors";
 import dotenv from "dotenv";
 
@@ -9,7 +10,8 @@ app.use(cors());
 app.use(express.json());
 dotenv.config();
 
-app.use('/api/v1', router);
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/account', accountRouter);
 
 
 
