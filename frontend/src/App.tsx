@@ -1,11 +1,10 @@
 import './App.css'
-import Signin from './components/Signin';
-import Signup from './components/Signup'
+import Dashboard from './components/Dashboard';
 
 export default function App() {
   return (
   <div>
-      <Signin />
+      <Dashboard />
   </div>
   );
 }

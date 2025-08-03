@@ -6,7 +6,7 @@ import SubHeading from "./ui/SubHeading";
 
 export default function Signin() {
     return (
-        <div className="border border-slate-500 rounded-xl flex flex-col w-[23vw] relative top-[50%] p-4 pb-7 justify-center items-center">
+        <div className="border border-slate-200 rounded-xl flex flex-col w-[23vw] relative top-[50%] p-4 pb-7 justify-center items-center shadow-lg">
             <MainHeading text="Sign In"/>
             <SubHeading text="Enter your credentials to access your account"/>
             <div className="w-[90%] m-2">
