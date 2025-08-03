@@ -45,7 +45,7 @@ export default async function transferFunds(req: Request, res: Response) {
         await TransactionModel.create([{
             sender: userId, 
             receiver: receiverId, 
-            amount
+            amountTransferred: amount
         }], {session: session});
 
 

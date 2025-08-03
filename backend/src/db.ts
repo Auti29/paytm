@@ -89,7 +89,7 @@ export const AccountModel = model("accounts", AccountSchema);
 
 export interface transactionInterface {
     sender: mongoose.Schema.Types.ObjectId, 
-    reciever: mongoose.Schema.Types.ObjectId, 
+    receiver: mongoose.Schema.Types.ObjectId, 
     amountTransferred: Number
 }
 
@@ -99,7 +99,7 @@ export const TransactionSchema  = new Schema<transactionInterface> ({
         ref: "UserModel", 
         required: true
     }, 
-    reciever: {
+    receiver: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "UserModel",   
         required: true
