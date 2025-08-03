@@ -79,7 +79,39 @@ const AccountSchema = new Schema<accountInterface> ({
         type: Number,  
         required: true
     }
-}  );
+}, {timestamps: true}  );
 
 
 export const AccountModel = model("accounts", AccountSchema);
+
+
+
+
+export interface transactionInterface {
+    sender: mongoose.Schema.Types.ObjectId, 
+    reciever: mongoose.Schema.Types.ObjectId, 
+    amountTransferred: Number
+}
+
+export const TransactionSchema  = new Schema<transactionInterface> ({
+    sender: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "UserModel", 
+        required: true
+    }, 
+    reciever: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "UserModel",   
+        required: true
+    }, 
+    amountTransferred: {
+        type: Number, 
+        required: true
+    }
+}, {
+    timestamps: true
+}); 
+
+export const TransactionModel = model("transactions", TransactionSchema);
+
+
