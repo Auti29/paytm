@@ -44,7 +44,7 @@ export default async function login(req: Request, res: Response){
 
         return res.status(200).json({
             message: "sign in successful!!", 
-            token
+            token: token
         });
 
 

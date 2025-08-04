@@ -4,18 +4,40 @@ import MainHeading from "./ui/MainHeading";
 import SubHeading from "./ui/SubHeading";
 import AuthButtonComponent from "./ui/AuthButtonComponent";
 import { useState } from "react";
+import { signinauth } from "../api/auth/signinauth";
+import { useNavigate } from "react-router-dom";
 
 export default function Signin() {
         const [username, setUsername] = useState<string | null>(null);
         const [password, setPassword] = useState<string | null>(null);
+        const navigate = useNavigate();
 
 
         
-    function handleClick(){
-        alert({
-            username, 
-            password
-        });
+    async function handleClick(){
+        if(!username || !password){
+            alert("Credentials missing!!");
+            return;
+        }
+        
+        try{
+            const res = await signinauth({username, password});
+            
+            if(res.status != 200){
+                alert("wrong credentials!!!");
+                return;
+            }
+
+            const jwt = (res.data as {token: string}).token;
+
+            localStorage.setItem("token", jwt);
+
+            alert("signin done!!");
+
+            navigate('/dashboard');
+        }catch(e){
+            console.log("signin error: ", e);
+        }
     }
     
     return (
