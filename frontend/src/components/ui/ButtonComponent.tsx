@@ -1,11 +1,12 @@
 
-interface buttonProps {
-    text: string, }
+interface buttonPropsI {
+    text: string
+}
 
-export default function ButtonComponent(props: buttonProps) {
+export default function ButtonComponent(props: buttonPropsI) {
     return (
-        <div className="w-full flex items-center justify-center">
-                <button className="cursor-pointer border border-gray-800 w-[90%] p-2 m-4 rounded-md font-bold text-lg bg-gray-800 text-white">{props.text}</button>
-            </div>
-    );
+        <div>
+            <button className="bg-gray-600 text-white pl-3 pr-3 pt-1.5 pb-1.5 rounded-md font-sans text-sm font-bold cursor-pointer">{props.text}</button>
+        </div>
+    ); 
 }

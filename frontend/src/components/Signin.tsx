@@ -1,8 +1,8 @@
 import BottomWarning from "./ui/BottomWarning";
-import ButtonComponent from "./ui/ButtonComponent";
 import InputComponent from "./ui/InputComponet";
 import MainHeading from "./ui/MainHeading";
 import SubHeading from "./ui/SubHeading";
+import AuthButtonComponent from "./ui/AuthButtonComponent";
 
 export default function Signin() {
     return (
@@ -16,7 +16,7 @@ export default function Signin() {
                 <InputComponent label="Password" inputId="password" placeholder="Password"/>
             </div>
 
-            <ButtonComponent text="Sign In"/>
+            <AuthButtonComponent text="Sign In"/>
 
             <BottomWarning text="Don't have an account?" linkText="Sign Up" url="/signup"/>
         </div>

@@ -1,5 +1,5 @@
 import BottomWarning from "./ui/BottomWarning"
-import ButtonComponent from "./ui/ButtonComponent"
+import AuthButtonComponent from "./ui/AuthButtonComponent"
 import InputComponent from "./ui/InputComponet"
 import MainHeading from "./ui/MainHeading"
 import SubHeading from "./ui/SubHeading"
@@ -27,7 +27,7 @@ export default function Signup() {
                 <InputComponent inputId="password" label="Password" placeholder="Password"/>
            </div>
 
-            <ButtonComponent text="Sign Up"/>
+            <AuthButtonComponent text="Sign Up"/>
 
             <BottomWarning text="Already have an account?" linkText="Sign In" url="/signin"/>
         </div>

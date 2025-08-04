@@ -1,3 +1,4 @@
+import SearchUsersSection from "./SearchUsersSection";
 import BalanceInfo from "./ui/BalanceInfo";
 import Topbar from "./ui/Topbar";
 
@@ -10,6 +11,10 @@ export default function Dashboard(){
 
             <div>
                 <BalanceInfo />
+            </div>
+
+            <div>
+                <SearchUsersSection />
             </div>
         </div>
     );
