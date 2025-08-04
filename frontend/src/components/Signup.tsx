@@ -4,6 +4,8 @@ import InputComponent from "./ui/InputComponet"
 import MainHeading from "./ui/MainHeading"
 import SubHeading from "./ui/SubHeading"
 import { useState } from "react"
+import { register } from "../api/auth/register"
+import { useNavigate } from "react-router-dom"
 
 
 export default function Signup() {
@@ -11,15 +13,35 @@ export default function Signup() {
     const [firstName, setfirstName] = useState<string | null>(null);
     const [lastName, setlastName] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
+    const navigate = useNavigate();
+
+   async function handleClick(){
+        if(!username || !password || !firstName || !lastName){
+            //create a modal later or mui component
+            alert(
+                "credentials missing!!!"
+            )
+            return;
+        }
+
+        try{
+            await register({
+                username, 
+                password, 
+                firstName, 
+                lastName
+            });
+    
+            alert("you have signed up!!");
+
+            navigate('/dashboard');
+
+        }catch(e){
+            console.log("error occured!!", e);
+            //add error component
+        }
 
 
-    function handleClick(){
-        console.log({
-            username, 
-            firstName, 
-            lastName, 
-            password
-        });
     }
 
     return (
