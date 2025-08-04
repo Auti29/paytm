@@ -15,10 +15,6 @@ export default function SearchUsersSection() {
             <div className="mb-2 mt-0.5 max-h-[50vh] p-1 overflow-y-scroll">
             <Users />
             <Users />
-            <Users />
-            <Users />
-            <Users />
-            <Users />
             </div>
         </div>
     )

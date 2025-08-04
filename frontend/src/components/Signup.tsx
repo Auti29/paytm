@@ -3,31 +3,47 @@ import AuthButtonComponent from "./ui/AuthButtonComponent"
 import InputComponent from "./ui/InputComponet"
 import MainHeading from "./ui/MainHeading"
 import SubHeading from "./ui/SubHeading"
+import { useState } from "react"
 
 
 export default function Signup() {
+    const [username, setUsername] = useState<string | null>(null);
+    const [firstName, setfirstName] = useState<string | null>(null);
+    const [lastName, setlastName] = useState<string | null>(null);
+    const [password, setPassword] = useState<string | null>(null);
+
+
+    function handleClick(){
+        console.log({
+            username, 
+            firstName, 
+            lastName, 
+            password
+        });
+    }
+
     return (
-        <div className="border border-slate-500 rounded-xl flex flex-col w-[23vw] relative top-[50%] p-4 pb-7 justify-center items-center">
+        <div className="border-0 shadow-xl rounded-xl flex flex-col w-[23vw] relative p-4 pb-7 justify-center items-center">
             <MainHeading text="Register"/>
             <SubHeading text="Enter your information to create your account" />
 
             <div className="w-[90%] m-2">
-                <InputComponent inputId="firstName" label="First Name" placeholder="John"/>
+                <InputComponent type="text" setStateFunc={setfirstName} inputId="firstName" label="First Name" placeholder="John"/>
             </div>
                    
             <div className="w-[90%] m-2">
-                <InputComponent inputId="lastName" label="Last Name" placeholder="Doe"/>
+                <InputComponent type="text" setStateFunc={setlastName} inputId="lastName" label="Last Name" placeholder="Doe"/>
             </div>
 
             <div className="w-[90%] m-2">
-                <InputComponent inputId="username" label="Username" placeholder="John@29"/>
+                <InputComponent type="text" setStateFunc={setUsername} inputId="username" label="Username" placeholder="John@29"/>
             </div>
                 
             <div className="w-[90%] m-2">
-                <InputComponent inputId="password" label="Password" placeholder="Password"/>
+                <InputComponent type="password" setStateFunc={setPassword} inputId="password" label="Password" placeholder="Password"/>
            </div>
 
-            <AuthButtonComponent text="Sign Up"/>
+            <AuthButtonComponent onClickFunc={handleClick} text="Sign Up"/>
 
             <BottomWarning text="Already have an account?" linkText="Sign In" url="/signin"/>
         </div>
