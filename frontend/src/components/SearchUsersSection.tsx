@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import ButtonComponent from "./ui/ButtonComponent";
 import Users from "./ui/Users";
 import axios from "axios";
+import { SearchFallbackComponent } from "./ui/SearchFallbackComponent";
 const BE_URL = import.meta.env.VITE_API_URL;
 
 
@@ -61,12 +62,24 @@ export default function SearchUsersSection() {
             </div>
             
             <div className="font-bold text-gray-600 mt-2">
-                Pay Again
+                Pay Users
             </div>
             
             <div className="mb-2 mt-0.5 max-h-[50vh] p-1 overflow-y-scroll">
-            <Users />
-            <Users />
+            {
+                users ?
+                users.map((u, i) => {
+                    return(
+                        <div key={i}>
+                            <Users username={u.username}/>
+                         </div>   
+                    ) 
+                })
+                :(
+                    <SearchFallbackComponent />
+                )
+
+            }
             </div>
         </div>
     )
