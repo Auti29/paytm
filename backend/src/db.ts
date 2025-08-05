@@ -72,14 +72,14 @@ export interface accountInterface {
 const AccountSchema = new Schema<accountInterface> ({
     userId: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'UserModel', 
+        ref: 'users', 
         required: true
     }, 
     balance: {
         type: Number,  
         required: true
     }
-}, {timestamps: true}  );
+}, {timestamps: true});
 
 
 export const AccountModel = model("accounts", AccountSchema);

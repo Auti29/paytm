@@ -34,14 +34,12 @@ export default function Signup() {
     
             alert("you have signed up!!");
 
-            navigate('/dashboard');
+            navigate('/signin');
 
         }catch(e){
             console.log("error occured!!", e);
             //add error component
         }
-
-
     }
 
     return (
