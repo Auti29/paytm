@@ -72,7 +72,7 @@ export default function SearchUsersSection() {
                 users.map((u, i) => {
                     return(
                         <div key={i}>
-                            <Users username={u.username}/>
+                            <Users username={u.username} userId={u.id}/>
                          </div>   
                     ) 
                 })

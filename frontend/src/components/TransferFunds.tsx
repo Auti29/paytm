@@ -1,9 +1,44 @@
 import MainHeading from "./ui/MainHeading";
 import UserProfileIcon from "./ui/UserProfileIcon";
+import { useState } from "react";
+const BE_URL = import.meta.env.VITE_API_URL;
 
-
-export default function TransferFunds({receiver}: {receiver: string}){
+export default function TransferFunds({receiver, userId}: {receiver: string, userId:string}){
     const initials = receiver.split("")[0].toUpperCase();
+    const [amountTransfer, setAmountTransfer] = useState<string | null>(null);
+    const token = localStorage.getItem('token');
+
+    async function handleTransfer() {
+
+        if(!amountTransfer || parseInt(amountTransfer) <= 0){
+            alert("enter amount greater than 0 to transfer!!");
+            return; 
+        }
+        console.log("userId", userId);
+        try{
+            fetch(`${BE_URL}/api/v1/account/transferFunds`, {
+                method: 'POST',                 
+                headers: {
+                    'Content-Type': 'application/json',  
+                    'Authorization': `Bearer ${token}`   
+                },
+                body: JSON.stringify({
+                    amount: amountTransfer, 
+                    receiverId: userId
+                }) 
+                })
+                .then(res => res.json())
+                .then(data => {
+                console.log('Response:', data);
+                })
+                .catch(err => {
+                console.error('Error:', err);
+                });
+        }catch (err) {
+        alert(err +  "Transfer failed. Please try again.");
+    }
+
+    }
 
     return (
         <div className="flex flex-col justify-center items-center border-0 w-[28vw] p-3 rounded-xl shadow-lg/25">
@@ -24,11 +59,16 @@ export default function TransferFunds({receiver}: {receiver: string}){
 
             <div className="flex flex-col mt-3 w-[70%]">
                 <span className="text-lg font-bold text-gray-600">Amount (in $):</span>
-                <input className="p-1 text-lg border mt-2 mb-2 w-full border-gray-400 rounded-lg" type="number" placeholder="Enter amount"/>
+                <input 
+                value={amountTransfer ?? ""}
+                 onChange={(e) => setAmountTransfer(e.target.value)}
+                 className="p-1 text-lg border mt-2 mb-2 w-full border-gray-400 rounded-lg" type="number" placeholder="Enter amount"/>
             </div>
             
             <div className="w-[70%] mt-1 mb-7">
-                <button className="border-0 w-full rounded-md p-1.5 font-bold bg-green-500 text-white text-lg cursor-pointer">Initiate Transfer</button>
+                <button
+                onClick={handleTransfer} 
+                className="border-0 w-full rounded-md p-1.5 font-bold bg-green-500 text-white text-lg cursor-pointer">Initiate Transfer</button>
             </div>
 
         </div>

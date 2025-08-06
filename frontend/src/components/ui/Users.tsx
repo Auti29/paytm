@@ -3,17 +3,19 @@ import ButtonComponent from "./ButtonComponent";
 import UserProfileIcon from "./UserProfileIcon"
 
 interface usersPropsInterface {
-    username: string 
+    username: string,
+    userId: string 
 }
 
-export default function Users({username}: usersPropsInterface) {
+export default function Users({username, userId}: usersPropsInterface) {
 
     const initials = username.split("")[0].toUpperCase();
     const navigate = useNavigate();
 
     function handleClick() {
         const params= {
-            receiver :username
+            receiver :username, 
+            id: userId
         }
         navigate({
             pathname: "/transfer", 

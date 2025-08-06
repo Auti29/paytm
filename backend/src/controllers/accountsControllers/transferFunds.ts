@@ -23,24 +23,24 @@ export default async function transferFunds(req: Request, res: Response) {
 
         if(senderAcc.balance < amount){
             await session.abortTransaction();
-            return res.status(404).json({
+            return res.status(400).json({
                 message: "insufficient funds!!"
             });
         }
         
         const receiverAcc = await AccountModel.findOne({
-            userId: receiverId
+            userId: new mongoose.Types.ObjectId(receiverId)
         }).session(session);
         
         if(!receiverAcc){
             await session.abortTransaction();
-            return res.status(404).json({
+            return res.status(400).json({
                 message: "receiver account does not exists!"
             });
         }
 
-        await AccountModel.updateOne({userId}, {$inc: {balance: -amount}}).session(session);
-        await AccountModel.updateOne({userId: receiverAcc}, {$inc: {balance: amount}}).session(session);
+        await AccountModel.updateOne({userId}, {$inc: {balance: -parseInt(amount)}}).session(session);
+        await AccountModel.updateOne({userId: receiverId}, {$inc: {balance: parseInt(amount)}}).session(session);
 
         await TransactionModel.create([{
             sender: userId, 
@@ -61,7 +61,9 @@ export default async function transferFunds(req: Request, res: Response) {
         res.status(500).json({
             message:  "Internal server error!!"
         });
+        await session.abortTransaction();
+    }finally{
+        await session.endSession();
     }
 
-    await session.endSession();
 }

@@ -11,7 +11,6 @@ const DB_CONN = process.env.DB_CONN;
 const app = express();
 app.use(cors());
 app.use(express.json());
-
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/account', accountRouter);
 

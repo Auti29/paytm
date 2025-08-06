@@ -6,7 +6,7 @@ import transferFunds from "../controllers/accountsControllers/transferFunds";
 const accountRouter = Router();
 
 accountRouter.get('/balance', authMiddleware as RequestHandler, getBalance);
-accountRouter.post('/transfer', authMiddleware as RequestHandler, transferFunds);
+accountRouter.post('/transferFunds', authMiddleware as RequestHandler, transferFunds);
 
 
 export default accountRouter;

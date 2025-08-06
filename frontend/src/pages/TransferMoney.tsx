@@ -5,10 +5,11 @@ export default function TransferMoney() {
     const [searchParams,]  = useSearchParams();
 
     const receiver = searchParams.get('receiver');
+    const userId = searchParams.get('id')!;
 
     return(
         <div className="flex justify-center items-center h-screen w-screen">
-            <TransferFunds receiver={receiver || "dummyUsername"}/>
+            <TransferFunds userId={userId} receiver={receiver || "dummyUsername"}/>
         </div>
     );
 }
