@@ -1,10 +1,14 @@
+import axios from "axios";
 import MainHeading from "./ui/MainHeading";
 import UserProfileIcon from "./ui/UserProfileIcon";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const BE_URL = import.meta.env.VITE_API_URL;
 
 export default function TransferFunds({receiver, userId}: {receiver: string, userId:string}){
     const initials = receiver.split("")[0].toUpperCase();
+    const navigate = useNavigate();
+
     const [amountTransfer, setAmountTransfer] = useState<string | null>(null);
     const token = localStorage.getItem('token');
 
@@ -14,26 +18,23 @@ export default function TransferFunds({receiver, userId}: {receiver: string, use
             alert("enter amount greater than 0 to transfer!!");
             return; 
         }
-        console.log("userId", userId);
         try{
-            fetch(`${BE_URL}/api/v1/account/transferFunds`, {
-                method: 'POST',                 
-                headers: {
-                    'Content-Type': 'application/json',  
-                    'Authorization': `Bearer ${token}`   
-                },
-                body: JSON.stringify({
+            const res = await axios.post(`${BE_URL}/api/v1/account/transferFunds`,                
+                {
                     amount: amountTransfer, 
                     receiverId: userId
-                }) 
-                })
-                .then(res => res.json())
-                .then(data => {
-                console.log('Response:', data);
-                })
-                .catch(err => {
-                console.error('Error:', err);
-                });
+                }, 
+                {headers: {
+                    'Content-Type': 'application/json',  
+                    'Authorization': `Bearer ${token}`   
+                } }
+                );
+
+                const data = res.data as {message: string};
+                alert(`Response: ${data}`);
+
+                navigate('/dashboard');
+                
         }catch (err) {
         alert(err +  "Transfer failed. Please try again.");
     }

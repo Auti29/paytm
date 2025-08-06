@@ -11,6 +11,9 @@ export default async function searchUsers(req: Request, res: Response){
             }, 
             {
                 lastName: {"$regex": filter}
+            }, 
+            {
+                username: {"$regex": filter}
             }
         ]
     })
