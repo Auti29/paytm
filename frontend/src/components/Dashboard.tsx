@@ -3,6 +3,7 @@ import SearchUsersSection from "./SearchUsersSection";
 import BalanceInfo from "./ui/BalanceInfo";
 import Topbar from "./ui/Topbar";
 import axios from "axios";
+import TransactionHistory from "./TransactionHistory";
 const BE_URL = import.meta.env.VITE_API_URL;
 
 export interface userInterface 
@@ -64,8 +65,18 @@ export default function Dashboard(){
                 <BalanceInfo user={user} />
             </div>
 
-            <div>
-                <SearchUsersSection />
+            <div className="flex w-full justify-between mt-3">
+                <div className="w-[48%]">
+                    <SearchUsersSection />
+                </div>
+
+                <div className="w-[48%]">
+                    <div>
+                    <TransactionHistory />
+
+                    </div>
+                </div>
+
             </div>
         </div>
     );

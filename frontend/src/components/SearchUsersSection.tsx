@@ -43,7 +43,7 @@ export default function SearchUsersSection() {
 
 
     return (
-        <div className="border-0 rounded-md flex flex-col shadow-lg w-[50%] p-3 mt-4  border-gray-500">
+        <div className="border-0 rounded-md flex flex-col shadow-lg w-[full] p-3 mt-4  border-gray-500">
             <div className="font-bold mb-1 text-lg">
                 Make Payment
             </div>
