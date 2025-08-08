@@ -92,13 +92,8 @@ export default function Dashboard(){
                     <GraphComponent transactions = {transactions}/>
 
                     </div>
-                    {/* <div className="border-0 mt-4 rounded-lg shadow-lg flex flex-col">
-                    </div> */}
-                   
 
                 </div>
-
-
 
             </div>
         </div>
