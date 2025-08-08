@@ -96,12 +96,12 @@ export interface transactionInterface {
 export const TransactionSchema  = new Schema<transactionInterface> ({
     sender: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: "UserModel", 
+        ref: "users", 
         required: true
     }, 
     receiver: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserModel",   
+        ref: "users",   
         required: true
     }, 
     amountTransferred: {

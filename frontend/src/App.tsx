@@ -12,7 +12,7 @@ export default function App() {
       <Route path='/signup' element={<SignupPage />}/>
       <Route path='/signin' element={<SigninPage />}/>
       <Route path='/dashboard' element={<Dashboard />}/>
-      <Route path='/transfer:receiver' element={<TransferMoney />}/>
+      <Route path='/transfer' element={<TransferMoney />}/>
     </Routes>
   </BrowserRouter>
   );
@@ -20,6 +20,6 @@ export default function App() {
 
 
 //todo 
+//transaction history / graph
 //protected routes
 //loaders 
-//transaction history / graph

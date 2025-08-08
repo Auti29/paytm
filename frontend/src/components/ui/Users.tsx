@@ -15,10 +15,11 @@ interface usersPropsInterface {
     isButtonRemove?: boolean,  
     isTransactionView?: boolean, 
     transactionDateTime?: dateTime, 
-    sent?:boolean
+    sent?:boolean, 
+    amount?: number
 }
 
-export default function Users({username, userId, isButtonRemove, isTransactionView, transactionDateTime, sent}: usersPropsInterface) {
+export default function Users({username, userId, isButtonRemove, isTransactionView, transactionDateTime, sent, amount}: usersPropsInterface) {
 
     const initials = username.split("")[0].toUpperCase();
     const navigate = useNavigate();
@@ -57,7 +58,7 @@ export default function Users({username, userId, isButtonRemove, isTransactionVi
                 (   
                     <div className="flex pl-2 pr-2 items-center justify-center">
                     <span className={`text-lg mr-1 font-bold ${sent ? "text-red-500" : "text-green-500"}`}>
-                        $1000
+                        ${amount}
                     </span>   
                     <span>
                             {

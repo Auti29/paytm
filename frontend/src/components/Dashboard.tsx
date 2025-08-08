@@ -4,6 +4,7 @@ import BalanceInfo from "./ui/BalanceInfo";
 import Topbar from "./ui/Topbar";
 import axios from "axios";
 import TransactionHistory from "./TransactionHistory";
+import GraphComponent from "./GraphComponent";
 const BE_URL = import.meta.env.VITE_API_URL;
 
 export interface userInterface 
@@ -22,8 +23,23 @@ type dataType = {
     user: userInterface
 }
 
+export interface UserI {
+    username: string, 
+    firstName: string, 
+    lastName: string,
+    _id: string
+}
+
+export interface  TransactionI {
+    amountTransferred: number, 
+    createdAt: string, 
+    updatedAt: string, 
+    sender: UserI, 
+    receiver: UserI
+}
 
 export default function Dashboard(){
+    const [transactions, setTransactions] = useState<TransactionI[] | null>(null);
     const [user, setUser] = useState<userInterface>({
         balance: 1000, 
         userId: {
@@ -71,11 +87,16 @@ export default function Dashboard(){
                 </div>
 
                 <div className="w-[48%]">
-                    <div>
-                    <TransactionHistory />
-
+                    <div className="border">
+                        <GraphComponent transactions = {transactions}/>
                     </div>
+                    <div>
+                    <TransactionHistory currUser = {user} transactions={transactions} setTransactions = {setTransactions}/>
+                    </div>
+
                 </div>
+
+
 
             </div>
         </div>
