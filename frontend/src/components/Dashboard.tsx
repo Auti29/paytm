@@ -82,17 +82,19 @@ export default function Dashboard(){
             </div>
 
             <div className="flex w-full justify-between mt-3">
-                <div className="w-[48%]">
+                <div className="w-[48%] border-0 rounded-lg">
                     <SearchUsersSection />
                 </div>
 
                 <div className="w-[48%]">
-                    <div className="border">
-                        <GraphComponent transactions = {transactions}/>
-                    </div>
-                    <div>
+                     <div className="border-0 shadow-xl  border-gray-600 rounded-lg">
                     <TransactionHistory currUser = {user} transactions={transactions} setTransactions = {setTransactions}/>
+                    <GraphComponent transactions = {transactions}/>
+
                     </div>
+                    {/* <div className="border-0 mt-4 rounded-lg shadow-lg flex flex-col">
+                    </div> */}
+                   
 
                 </div>
 

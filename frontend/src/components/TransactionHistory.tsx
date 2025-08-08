@@ -34,17 +34,15 @@ export default function TransactionHistory({currUser, transactions, setTransacti
         fetchTrasactionHistory();
     }, []);
 
-
-
     return (
         <Card>
             <div className="flex justify-start">
                 <h1 className="font-bold text-lg text-gray-600">Recent Transactions</h1>
             </div>
-            <div className="">
+            <div className="p-2">
             {
                 transactions &&
-                transactions.sort((a: TransactionI, b: TransactionI) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()).slice(0, 3).map((t, i) => {
+                [...transactions].sort((a: TransactionI, b: TransactionI) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()).slice(0, 3).map((t, i) => {
                     return(
                         <div key={i}>
                             <Users 

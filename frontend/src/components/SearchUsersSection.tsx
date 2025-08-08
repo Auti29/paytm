@@ -43,8 +43,8 @@ export default function SearchUsersSection() {
 
 
     return (
-        <div className="border-0 rounded-md flex flex-col shadow-lg w-[full] p-3 mt-4  border-gray-500">
-            <div className="font-bold mb-1 text-lg">
+        <div className="border-0 border-gray-600 rounded-md flex flex-col shadow-lg w-[full] p-3 mt-4">
+            <div className="font-bold mb-1 text-lg text-gray-600">
                 Make Payment
             </div>
             <div className="w-full flex justify-between">
